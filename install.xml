@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<name>Fast Order modification</name>
+	<code>fastordermod</code>
+	<version>1.0</version>
+	<author>Tkachenko Aleksey</author>
+	<link>http://tauweb.ru</link>
+
+	<!-- Product modification ====================================================================== -->
+	<file path="catalog/view/theme/*/template/product/product.tpl">
+	<operation>
+			<search><![CDATA[<button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary btn-lg btn-block"><?php echo $button_cart; ?></button>]]>
+		</search>
+			<add position="before"><![CDATA[
+							<!-- Button fastorder -->
+							<?php  echo $fastorder;?>
+							<!-- END :  button fastorder -->
+			]]>
+			</add>
+		</operation>
+	</file>
+
+	<!-- Adding the fastorder product controller -->
+	<file path="catalog/controller/product/product.php">
+		<!-- For OpenCart version 2.2.0.0 or later  -->
+		<operation>
+			<search><![CDATA[
+			$this->response->setOutput($this->load->view('product/product', $data));
+				]]></search>
+			<add position="before"><![CDATA[
+			$data['fastorder'] = $this->load->controller('product/fastorder', ['price'=>$data['price'],'heading_title'=>$data['heading_title'], 'product_id'=>$data['product_id']]); // FastOrder
+		]]></add>
+		</operation>
+		<!-- For OpenCart version under 2.2.0.0  -->
+		<operation>
+			<search><![CDATA[
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/product.tpl'))
+				]]></search>
+			<add position="before"><![CDATA[
+			$data['fastorder'] = $this->load->controller('product/fastorder', ['price'=>$data['price'],'heading_title'=>$data['heading_title'], 'product_id'=>$data['product_id']]); // FastOrder
+		]]></add>
+		</operation>
+	</file>
+
+	<!-- Product category modification =========================================================== -->
+	<file path="catalog/view/theme/*/template/product/category.tpl">
+	<operation>
+			<search><![CDATA[<div class="button-group">]]>
+		</search>
+			<add position="before"><![CDATA[
+              <!-- Button fastorder -->
+              <div class="button-gruop">
+                <?php echo $product['fastorder']; ?>
+              </div><!-- END :  button fastorder -->
+			]]>
+			</add>
+		</operation>
+	</file>
+
+	<file path="catalog/controller/product/category.php">
+			<!-- For OpenCart version 2.2.0.0 or later  -->
+		<operation>
+			<search><![CDATA[
+			'rating'      => $result['rating'],
+				]]></search>
+			<add position="after"><![CDATA[
+					'fastorder'		=> $this->load->controller('product/fastorder', ['price'=>$result['price'],'heading_title'=>$result['name'], 'product_id'=>$result['product_id']]), // FastOrder
+		]]></add>
+		</operation>
+		<!-- For OpenCart version under 2.2.0.0  -->
+		<operation>
+			<search><![CDATA[
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/category.tpl'))
+				]]></search>
+			<add position="before"><![CDATA[
+			$data['fastorder'] = $this->load->controller('product/fastorder', ['price'=>$result['price'],'heading_title'=>$data['heading_title']]); // FastOrder
+		]]></add>
+		</operation>
+	</file>
+</modification>
