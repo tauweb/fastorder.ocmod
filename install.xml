@@ -73,7 +73,7 @@
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/category.tpl'))
 				]]></search>
 			<add position="before"><![CDATA[
-			$data['fastorder'] = $this->load->controller('product/fastorder', ['price'=>$result['price'],'heading_title'=>$data['heading_title']]); // FastOrder
+			$data['fastorder'] = $this->load->controller('product/fastorder', [isset($price) ? $result['price'] : '', 'heading_title'=>$data['heading_title']]); // FastOrder
 		]]></add>
 		</operation>
 	</file>
