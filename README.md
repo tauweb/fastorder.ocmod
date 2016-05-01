@@ -16,3 +16,7 @@ OpenCart version 2.0.2.0 and above , Bootstrap, JQuery
 OpenCart версии 2.0.2.0 и выше, Bootstrap, JQuery
 
 ![](https://github.com/WhiskeyMan-Tau/fastorder.ocmod/blob/master/form.png?raw=true)
+
+![](https://github.com/WhiskeyMan-Tau/fastorder.ocmod/blob/master/msg.png?raw=true)
+![](https://github.com/WhiskeyMan-Tau/fastorder.ocmod/blob/master/product.png?raw=true)
+![](https://github.com/WhiskeyMan-Tau/fastorder.ocmod/blob/master/category.png?raw=true)
