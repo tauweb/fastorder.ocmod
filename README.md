@@ -14,3 +14,5 @@ OpenCart version 2.0.2.0 and above , Bootstrap, JQuery
 
 ###Системные требования
 OpenCart версии 2.0.2.0 и выше, Bootstrap, JQuery
+
+![](https://github.com/WhiskeyMan-Tau/fastorder.ocmod/blob/master/form.png?raw=true)
