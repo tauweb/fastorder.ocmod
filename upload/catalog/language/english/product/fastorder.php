@@ -24,3 +24,4 @@ $_['text_fastorder_mail_msg_data'] = 'When ordering, the following data were';
 $_['text_fastorder_mail_msg_order'] = 'Order the following products';
 $_['text_fastorder_mail_msg_price'] = 'On the total cost of';
 $_['txt_text_fastorder_form_info_message'] = 'All fields marked with an star must be filled!';
+$_['txt_none_price'] ='Not specified . Ask our manager';

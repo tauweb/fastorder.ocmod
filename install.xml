@@ -8,9 +8,9 @@
 
 	<!-- Product modification ====================================================================== -->
 	<file path="catalog/view/theme/*/template/product/product.tpl">
-	<operation>
+		<operation>
 			<search><![CDATA[<button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary btn-lg btn-block"><?php echo $button_cart; ?></button>]]>
-		</search>
+			</search>
 			<add position="before"><![CDATA[
 							<!-- Button fastorder -->
 							<?php  echo $fastorder;?>
@@ -44,9 +44,9 @@
 
 	<!-- Product category modification =========================================================== -->
 	<file path="catalog/view/theme/*/template/product/category.tpl">
-	<operation>
+		<operation>
 			<search><![CDATA[<div class="button-group">]]>
-		</search>
+			</search>
 			<add position="before"><![CDATA[
               <!-- Button fastorder -->
               <div class="button-gruop">
@@ -58,13 +58,13 @@
 	</file>
 
 	<file path="catalog/controller/product/category.php">
-			<!-- For OpenCart version 2.2.0.0 or later  -->
+		<!-- For OpenCart version 2.2.0.0 or later  -->
 		<operation>
 			<search><![CDATA[
 			'rating'      => $result['rating'],
 				]]></search>
 			<add position="after"><![CDATA[
-					'fastorder'		=> $this->load->controller('product/fastorder', ['price'=>$result['price'],'heading_title'=>$result['name'], 'product_id'=>$result['product_id']]), // FastOrder
+					'fastorder'		=> $this->load->controller('product/fastorder', ['price'=>$price,'heading_title'=>$result['name'], 'product_id'=>$result['product_id']]), // FastOrder
 		]]></add>
 		</operation>
 		<!-- For OpenCart version under 2.2.0.0  -->
@@ -73,8 +73,38 @@
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/category.tpl'))
 				]]></search>
 			<add position="before"><![CDATA[
-			$data['fastorder'] = $this->load->controller('product/fastorder', [isset($price) ? $result['price'] : '', 'heading_title'=>$data['heading_title']]); // FastOrder
+			$data['fastorder'] = $this->load->controller('product/fastorder', ['price'=>$price,'heading_title'=>$data['heading_title']]); // FastOrder
 		]]></add>
+		</operation>
+	</file>
+
+	<file path="catalog/view/theme/*/template/common/footer.tpl">
+		<operation>
+			<search><![CDATA[</footer>]]>
+			</search>
+			<add position="after"><![CDATA[
+<script>
+  function showForm(data){
+    $.ajax({
+      url: 'index.php?route=product/fastorder/getForm',
+      type: 'post',
+      data: {heading_title: data['heading_title'], price: data['price'] ,product_id: data['product_id']},
+
+      beforeSend: function() {
+      },
+      complete: function() {
+      },
+      success: function(result) {
+        $('#fastorder-form-container'+data['product_id']).html(result);
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+      }
+    });
+};
+</script>
+			]]>
+			</add>
 		</operation>
 	</file>
 </modification>
