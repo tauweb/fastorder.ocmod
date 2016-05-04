@@ -112,13 +112,14 @@ class ControllerProductFastorder extends Controller {
       $json['price'] = $this->request->post['price'];
     }
 
-    // Адрес ящика, на который будет отправляться письма для администрации
+    // Mail adrees 
     $mail_to    = $this->config->get('config_email');
 
-    // Адрес ящика с которого будут отправляться письма для администрации
+    // Mail adrees from mail were send (get from Opencart settings)
+    // If multiple mail set in store admin settings - explode adresses and use the 1th e-mail adress
     $mail_from  = explode(',', $this->config->get('config_email'))[0];
 
-    // Тема письма
+    // Mail subject
     $subject    = $data['text_fastorder_mail_subject'] .' ('.$_SERVER['HTTP_HOST'] . ')';
 
     $products   = $json['heading_title'];
@@ -135,7 +136,7 @@ class ControllerProductFastorder extends Controller {
         $data['text_fastorder_mail_msg_order'] .': <strong>' . $products . '</strong><br />'.
         $data['text_fastorder_mail_msg_price'] . ': <strong>' . $json['price'] . '</strong><br />';
 
-    // Формирует основные хедеры
+    // Set the mail headers
     $headers = "From: $mail_from" . "\r\n" .
         "Reply-To: $mail_from" . "\r\n" .
         'Content-Type: text/html; charset="utf8"'."\n".
@@ -145,14 +146,6 @@ class ControllerProductFastorder extends Controller {
     $result = mail($mail_to, $subject, $mail_message, $headers);
 
     // To customer==================================================================================
-    // If multiple mail set in store admin settings - explode adresses and use the 1th e-mail adress
-    // $mail_from = explode(',', $mail_to)[0];
-
-    // Формирует основные хедеры
-    $headers = "From: $mail_from" . "\r\n" .
-        "Reply-To: $mail_from" . "\r\n" .
-        'Content-Type: text/html; charset="utf8"'."\n".
-        'X-Mailer: PHP/' . phpversion();
 
     // Send mail to the customer
     $result = mail($json['mail'], $subject, $mail_message, $headers);
