@@ -28,4 +28,4 @@ OpenCart версии 2.0.2.0 и выше, Bootstrap, JQuery
 
 
 #Versions
-1.0.1: Bugfix: fix error in view subcategories ($price variable in catogory controller not fount)
+1.0.1: Bugfix: fix error in view subcategories ($price variable in catogory controller not found)
