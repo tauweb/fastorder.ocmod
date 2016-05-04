@@ -2,7 +2,7 @@
 <modification>
 	<name>Fast Order modification</name>
 	<code>fastordermod</code>
-	<version>1.0</version>
+	<version>1.0.1</version>
 	<author>Tkachenko Aleksey</author>
 	<link>http://tauweb.ru</link>
 
@@ -64,7 +64,7 @@
 			'rating'      => $result['rating'],
 				]]></search>
 			<add position="after"><![CDATA[
-					'fastorder'		=> $this->load->controller('product/fastorder', ['price'=>$price,'heading_title'=>$result['name'], 'product_id'=>$result['product_id']]), // FastOrder
+					'fastorder'		=> $this->load->controller('product/fastorder', ['price'=>isset($price) ? $price : '','heading_title'=>$result['name'], 'product_id'=>$result['product_id']]), // FastOrder
 		]]></add>
 		</operation>
 		<!-- For OpenCart version under 2.2.0.0  -->
@@ -73,7 +73,7 @@
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/category.tpl'))
 				]]></search>
 			<add position="before"><![CDATA[
-			$data['fastorder'] = $this->load->controller('product/fastorder', ['price'=>$price,'heading_title'=>$data['heading_title']]); // FastOrder
+			$data['fastorder'] = $this->load->controller('product/fastorder', ['price'=>isset($price) ? $price : '','heading_title'=>$data['heading_title']]); // FastOrder
 		]]></add>
 		</operation>
 	</file>
