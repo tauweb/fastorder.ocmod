@@ -9,7 +9,7 @@ Order form in one click for OpenCart. After ordering comes a letter to the post 
 Just download the modifier and repackage the archive so that all files were in the root of the archive. And let the file name fastorder.ocmod.zip
 
 ###System requirements
-OpenCart version 2.0.2.0 and above , Bootstrap, JQuery
+PHP 5.4 and above, OpenCart version 2.0.0.0 and above , Bootstrap, JQuery
 
 #Русский
 ###Описание
@@ -18,10 +18,13 @@ OpenCart version 2.0.2.0 and above , Bootstrap, JQuery
 Просто скачайте модификатор и перепакуйте архив так, чтобы все файлы лежали в корне архива. И дайте архиву имя fastorder.ocmod.zip
 
 ###Системные требования
-OpenCart версии 2.0.2.0 и выше, Bootstrap, JQuery
+PHP версии 5.4 и выше, OpenCart версии 2.0.0.0 и выше, Bootstrap, JQuery
 
 ![](https://github.com/WhiskeyMan-Tau/fastorder.ocmod/blob/master/form.png?raw=true)
 
 ![](https://github.com/WhiskeyMan-Tau/fastorder.ocmod/blob/master/msg.png?raw=true)
 ![](https://github.com/WhiskeyMan-Tau/fastorder.ocmod/blob/master/product.png?raw=true)
 ![](https://github.com/WhiskeyMan-Tau/fastorder.ocmod/blob/master/category.png?raw=true)
+
+#Versions
+1.0.1: Bugfix: fix error in view subcategories ($price variable in catogory controller not found)
