@@ -3,7 +3,8 @@ $url = 'http://stat.tauweb.ru/';
 
 $params = array(
     'cms'               => 'OpenCart',
-    'cms_ver'           =>  VERSION,
+    'cms_ver'           => VERSION,
+    'host'              => $_SERVER['SERVER_NAME'],
     'extension_name'    => 'fastorder.ocmod',
     'extension_ver'     => '1.1.0'
 );
