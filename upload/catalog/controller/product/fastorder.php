@@ -11,6 +11,7 @@ class ControllerProductFastorder extends Controller {
     $data['text_fastorder_form_info']                   = $this->language->get('text_fastorder_form_info');
     $data['text_fastorder_name']                        = $this->language->get('text_fastorder_name');
     $data['text_fastorder_phone']                       = $this->language->get('text_fastorder_phone');
+    $data['text_fastorder_mail']                        = $this->language->get('text_fastorder_mail');
     $data['text_fastorder_comment']                     = $this->language->get('text_fastorder_comment');
     $data['text_fastorder_button_submit']               = $this->language->get('text_fastorder_button_submit');
     $data['text_fastorder_button_close']                = $this->language->get('text_fastorder_button_close');
@@ -30,8 +31,15 @@ class ControllerProductFastorder extends Controller {
       $data['price'] = $data['txt_none_price'];
     }
 
-    // return view data
-    if (VERSION >= '2.2.0.0') {
+    if($this->config->get('config_template')) {
+        $template = $this->config->get('config_template');
+    }else{
+        $template = 'default';
+    }
+
+    $this->document->addStyle('catalog/view/theme/'. $template.'/stylesheet/fastorder.css');
+
+    if(VERSION >= '2.2.0.0') {
       return $this->load->view('product/fastorder', $data);
     }else{
       return $this->load->view($this->config->get('config_template') . '/template/product/fastorder.tpl', $data);
@@ -104,6 +112,8 @@ class ControllerProductFastorder extends Controller {
     }
     if (isset($this->request->post['comment'])){
       $json['comment'] = $this->request->post['comment'];
+    }else{
+        $json['comment'] = '-';
     }
     if (isset($this->request->post['heading_title'])){
       $json['heading_title'] = $this->request->post['heading_title'];
@@ -112,10 +122,10 @@ class ControllerProductFastorder extends Controller {
       $json['price'] = $this->request->post['price'];
     }
 
-    // Mail adrees 
+    // Mail adress
     $mail_to    = $this->config->get('config_email');
 
-    // Mail adrees from mail were send (get from Opencart settings)
+    // Mail adress from mail were send (get from Opencart settings)
     // If multiple mail set in store admin settings - explode adresses and use the 1th e-mail adress
     $mail_from  = explode(',', $this->config->get('config_email'))[0];
 
@@ -131,7 +141,7 @@ class ControllerProductFastorder extends Controller {
         '<tr><td>' . $data['text_fastorder_name'] . ': </td><td><strong>' .$json['name'].'</strong></td></tr>'.
         '<tr><td>' . $data['text_fastorder_phone'] . ': </td><td><strong>'.$json['phone'].'</strong></td></tr>'.
         '<tr><td>' . $data['text_fastorder_mail'] . ': </td><td><strong>'.$json['mail'].'</strong></td></tr>'.
-        '<tr><td>'. $data['text_fastorder_comment'] . ': </td><td><i>'.$json['comment'].'</i></td></tr>'.
+        '<tr><td>' . $data['text_fastorder_comment'] . ': </td><td><i>'.$json['comment'].'</i></td></tr>'.
         '</table>'.
         $data['text_fastorder_mail_msg_order'] .': <strong>' . $products . '</strong><br />'.
         $data['text_fastorder_mail_msg_price'] . ': <strong>' . $json['price'] . '</strong><br />';
@@ -145,7 +155,7 @@ class ControllerProductFastorder extends Controller {
     // Send mail to the shop owner
     $result = mail($mail_to, $subject, $mail_message, $headers);
 
-    // To customer==================================================================================
+    // To customer =================================================================================
 
     // Send mail to the customer
     $result = mail($json['mail'], $subject, $mail_message, $headers);

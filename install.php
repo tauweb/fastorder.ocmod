@@ -1,9 +1,18 @@
 <?php
-// This file only for developer testing and do not need to install modification
-//  if (VERSION = '2.2.0.0') {
-// rename(__DIR__.'/upload/catalog/language/english', __DIR__.'/upload/catalog/language/en-gb');
-// rename(__DIR__.'/upload/catalog/language/russian', __DIR__.'/upload/catalog/language/ru-ru');
-// }
+$url = 'http://stat.tauweb.ru/';
 
-// rename('upload/catalog/language/russian/', './upload/catalog/language/ru-ru/');
+$params = array(
+    'cms'               => 'OpenCart',
+    'cms_ver'           =>  VERSION,
+    'extension_name'    => 'fastorder.ocmod',
+    'extension_ver'     => '1.1.0'
+);
+
+@$result = file_get_contents($url, false, stream_context_create( array(
+    'http' => array(
+        'method'  => 'POST',
+        'header'  => 'Content-type: application/x-www-form-urlencoded',
+        'content' => http_build_query($params)
+    )
+)));
 ?>

@@ -7,6 +7,7 @@ $_['text_fastorder_form_info'] = '
           <p>To make a quick reservation in a single click , fill out the form below and click the button <strong>"Confirm the order in one click"</strong>, after which we will call you back.</p>';
 $_['text_fastorder_name'] = 'Your name';
 $_['text_fastorder_phone'] = 'Phone number';
+$_['text_fastorder_mail'] = 'E-mail';
 $_['text_fastorder_comment'] = 'Comment';
 $_['text_fastorder_button_submit'] = 'Confirm the order in one click!';
 $_['text_fastorder_button_close'] = 'close';

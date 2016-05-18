@@ -2,11 +2,11 @@
 <modification>
 	<name>Fast Order modification</name>
 	<code>fastordermod</code>
-	<version>1.0.1</version>
+	<version>1.1.0</version>
 	<author>Tkachenko Aleksey</author>
 	<link>http://tauweb.ru</link>
 
-	<!-- Product modification ====================================================================== -->
+	<!-- Product modification ================================================================== -->
 	<file path="catalog/view/theme/*/template/product/product.tpl">
 		<operation>
 			<search><![CDATA[<button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary btn-lg btn-block"><?php echo $button_cart; ?></button>]]>
@@ -22,27 +22,17 @@
 
 	<!-- Adding the fastorder product controller -->
 	<file path="catalog/controller/product/product.php">
-		<!-- For OpenCart version 2.2.0.0 or later  -->
 		<operation>
 			<search><![CDATA[
-			$this->response->setOutput($this->load->view('product/product', $data));
+           $this->model_catalog_product->updateViewed($this->request->get['product_id']);
 				]]></search>
-			<add position="before"><![CDATA[
-			$data['fastorder'] = $this->load->controller('product/fastorder', ['price'=>$data['price'],'heading_title'=>$data['heading_title'], 'product_id'=>$data['product_id']]); // FastOrder
-		]]></add>
-		</operation>
-		<!-- For OpenCart version under 2.2.0.0  -->
-		<operation>
-			<search><![CDATA[
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/product.tpl'))
-				]]></search>
-			<add position="before"><![CDATA[
-			$data['fastorder'] = $this->load->controller('product/fastorder', ['price'=>$data['price'],'heading_title'=>$data['heading_title'], 'product_id'=>$data['product_id']]); // FastOrder
+			<add position="after"><![CDATA[
+                $data['fastorder'] = $this->load->controller('product/fastorder', ['price'=>$data['price'],'heading_title'=>$data['heading_title'], 'product_id'=>$data['product_id']]); // FastOrder button
 		]]></add>
 		</operation>
 	</file>
 
-	<!-- Product category modification =========================================================== -->
+	<!-- Product category modification ========================================================= -->
 	<file path="catalog/view/theme/*/template/product/category.tpl">
 		<operation>
 			<search><![CDATA[<div class="button-group">]]>

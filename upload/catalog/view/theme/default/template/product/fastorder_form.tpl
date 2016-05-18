@@ -1,10 +1,5 @@
-<!-- <button type="button" style="margin-bottom: 5px;" id="fast" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#bs-fastorder<?php echo $product_id;?>">
-<?php var_dump($this); ?>
-</button>
- -->
-
 <!-- Modal fastorder -->
-<div style="display:none; padding: 10px;" class="modal fade" id="bs-fastorder<?php echo $product_id;?>" tabindex="-1" role="dialog" aria-labelledby="bs-fastorderLabel">
+<div style="display:none; padding: 10px;" class="modal fade modal-fastorder" id="bs-fastorder<?php echo $product_id;?>" tabindex="-1" role="dialog" aria-labelledby="bs-fastorderLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -57,9 +52,8 @@
     </div>
 </div>
 
-
 <!-- Modal fastorder success -->
-<div class="modal fade" id="fastorder-success<?php echo $product_id;?>" tabindex="-1" role="dialog">
+<div class="modal fade modal-fastorder-success" id="fastorder-success<?php echo $product_id;?>" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

@@ -5,8 +5,9 @@ $_['text_fastorder_form_header'] = 'Форма заказа в один клик
 $_['text_fastorder_form_info'] = '
           <h3 style="text-align: center;">Заказ в один клик с обратным звонком</h3>
           <p>Для оформления быстрого заказа в один клик, заполните форму ниже и нажмите кнопку <strong>"Подтвердить заказ в один клик"</strong>, после чего мы вам перезвоним.</p>';
-$_['text_fastorder_name'] = 'Ваше имя';
+$_['text_fastorder_name'] = 'Имя';
 $_['text_fastorder_phone'] = 'Номер телефона';
+$_['text_fastorder_mail'] = 'Электронная почта';
 $_['text_fastorder_comment'] = 'Комментарий';
 $_['text_fastorder_button_submit'] = 'Подтвердить заказ в один клик!';
 $_['text_fastorder_button_close'] = 'Закрыть';
