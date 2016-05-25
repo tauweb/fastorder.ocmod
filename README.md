@@ -36,7 +36,7 @@ PHP версии 5.4 и выше, OpenCart версии 2.0.0.0 и выше, Boo
 #Versions
 1.0.1: Bugfix: fix error in view subcategories ($price variable in catogory controller not found)
 
-1.1.0: Add fastorder.css where you may set yours styles for the button and forms. 
+1.1.1: Add fastorder.css where you may set yours styles for the button and forms. 
     Fix mail filed caption in the mail message.
     Modified language files.
     Add send statistic about install to server, this is test stuff (This is small thanks to me)
