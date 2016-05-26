@@ -6,7 +6,7 @@ $params = array(
     'cms_ver'           => VERSION,
     'host'              => $_SERVER['SERVER_NAME'],
     'extension_name'    => 'fastorder.ocmod',
-    'extension_ver'     => '1.1.0'
+    'extension_ver'     => '1.2.0'
 );
 
 @$result = file_get_contents($url, false, stream_context_create( array(

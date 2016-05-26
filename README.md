@@ -41,3 +41,7 @@ PHP версии 5.4 и выше, OpenCart версии 2.0.0.0 и выше, Boo
     Modified language files.
     Add send statistic about install to server, this is test stuff (This is small thanks to me)
     Small rewrite, fix and code edit. More details on the github branch.
+1.2.0: Full rewrite mail send method. It is now used to send mail OpenCart mail object.
+    Added: If Display stock is enable and out of stock is disbale and product quantity < 0  - do not show fastorder button.
+    Now mail Sender contain shop name.
+    Small code fix.
