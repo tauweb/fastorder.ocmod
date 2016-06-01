@@ -35,7 +35,7 @@
                         <button style="float:right; margin: 10px;" type="button" class=" btn btn-danger btn-lg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><?php echo $text_fastorder_button_cancel;?></span></button>
                         <div id="tt" class="form-group">
                             <label for="txta_comment"></label>
-                            <input class="form-control" style="display:none" id="heading_title<?php echo $product_id;?>" name="heading_title<?php echo $product_id;?>" value="<?php echo $heading_title;?>">
+                            <input class="form-control" style="display:none" id="product_name<?php echo $product_id;?>" name="product_name<?php echo $product_id;?>" value="<?php echo $product_name;?>">
                             <input class="form-control" style="display:none" id="price<?php echo $product_id;?>" name="price<?php echo $product_id;?>" value="<?php echo $price; ?>">
                             <input class="form-control" style="display:none" id="product_id<?php echo $product_id;?>" name="product_id<?php echo $product_id;?>" value="<?php echo $product_id;?>">
                         </div>
@@ -44,7 +44,7 @@
             </div>
             <div class="modal-footer">
                 <ul style="list-style: none;">
-                    <li><?php echo $text_fastorder_mail_msg_order;?>: <strong style="color: #000;"><?php echo $heading_title; ?></strong></li>
+                    <li><?php echo $text_fastorder_mail_msg_order;?>: <strong style="color: #000;"><?php echo $product_name; ?></strong></li>
                     <li><?php echo $text_fastorder_mail_msg_price;?>: <strong><?php echo $price; ?></strong></li>
                 </ul>
             </div>
@@ -82,7 +82,7 @@
         data['phone']         = $('#phone<?php echo $product_id;?>').val();
         data['mail']          = $('#mail<?php echo $product_id;?>').val();
         data['comment']       = $('#comment<?php echo $product_id;?>').val();
-        data['heading_title'] = $('#heading_title<?php echo $product_id;?>').val();
+        data['product_name'] = $('#product_name<?php echo $product_id;?>').val();
         data['price']         = $('#price<?php echo $product_id;?>').val();
         data['product_id']    = $('#product_id<?php echo $product_id;?>').val();
 
@@ -90,7 +90,7 @@
             url: 'index.php?route=product/fastorder/sender',
             type: 'post',
             data: {name: data['name'], phone: data['phone'], mail: data['mail'], comment: data['comment'],
-            heading_title: data['heading_title'], price: data['price'] ,product_id: data['product_id']},
+            product_name: data['product_name'], price: data['price'] ,product_id: data['product_id']},
             dataType: 'json',
             beforeSend: function() {
                 // Do form valdation

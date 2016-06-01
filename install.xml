@@ -2,7 +2,7 @@
 <modification>
 	<name>Fast Order modification</name>
 	<code>fastordermod</code>
-	<version>1.2.0</version>
+	<version>1.2.1</version>
 	<author>Tkachenko Aleksey</author>
 	<link>http://tauweb.ru</link>
 
@@ -27,7 +27,7 @@
            $this->model_catalog_product->updateViewed($this->request->get['product_id']);
 				]]></search>
 			<add position="after"><![CDATA[
-                $data['fastorder'] = $this->load->controller('product/fastorder', ['price'=>$data['price'],'heading_title'=>$data['heading_title'], 'product_id'=>$data['product_id']]); // FastOrder button
+                $data['fastorder'] = $this->load->controller('product/fastorder', ['price'=>$data['price'],'product_name'=>$data['heading_title'], 'product_id'=>$data['product_id']]); // FastOrder button
 		]]></add>
 		</operation>
 	</file>
@@ -54,7 +54,7 @@
 			'rating'      => $result['rating'],
 				]]></search>
 			<add position="after"><![CDATA[
-					'fastorder'		=> $this->load->controller('product/fastorder', ['price'=>isset($price) ? $price : '','heading_title'=>$result['name'], 'product_id'=>$result['product_id']]), // FastOrder
+					'fastorder'		=> $this->load->controller('product/fastorder', ['price'=>isset($price) ? $price : '','product_name'=>$result['name'], 'product_id'=>$result['product_id']]), // FastOrder
 		]]></add>
 		</operation>
 		<!-- For OpenCart version under 2.2.0.0  -->
@@ -63,7 +63,7 @@
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/category.tpl'))
 				]]></search>
 			<add position="before"><![CDATA[
-			$data['fastorder'] = $this->load->controller('product/fastorder', ['price'=>isset($price) ? $price : '','heading_title'=>$data['heading_title']]); // FastOrder
+			$data['fastorder'] = $this->load->controller('product/fastorder', ['price'=>isset($price) ? $price : '','product_name'=>$data['heading_title']]); // FastOrder
 		]]></add>
 		</operation>
 	</file>
@@ -78,7 +78,7 @@
     $.ajax({
       url: 'index.php?route=product/fastorder/getForm',
       type: 'post',
-      data: {heading_title: data['heading_title'], price: data['price'] ,product_id: data['product_id']},
+      data: {product_name: data['product_name'], price: data['price'] ,product_id: data['product_id']},
 
       beforeSend: function() {
       },

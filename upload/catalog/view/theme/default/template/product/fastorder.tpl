@@ -9,9 +9,9 @@
   $('#btn-formcall<?php echo $product_id?>').on('click', function() {
     var data = [];
 
-    data['heading_title'] = '<?php echo $heading_title;?>';
-    data['price']         = '<?php echo $price;?>';
-    data['product_id']    = '<?php echo $product_id?>';
+    data['product_name']    = '<?php echo $product_name;?>';
+    data['price']           = '<?php echo $price;?>';
+    data['product_id']      = '<?php echo $product_id?>';
 
     showForm(data);
   });
