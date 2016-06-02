@@ -4,10 +4,15 @@
     Use "!important" if Bootstrap and template styles not override.
  */
 
+/* FastOrder modal form styles */
+.modal-fastorder{}
+
+/* FastOrder modal success styles */
+.modal-fastorder-success{}
+
 /* FastOrder button styles in the product cart */
-.btn-fastorder{
+.form-group .btn-fastorder{
     margin-bottom: 5px;
-    text-shadow: 1px 1px 2px black, 0 0 1em black;
 }
 
 /* FastOrder button styles in the category product list */
@@ -17,21 +22,23 @@
     padding: 6px;
 }
 
-/* FastOrder modal form styles */
-.modal-fastorder{}
-
-/* FastOrder modal success styles */
-.modal-fastorder-success{}
-
-/* buttons in the fastorer form */
-.modal-fastorder button {
+/* buttons in the fastorer form and success form */
+.modal-fastorder button, .modal-fastorder-success button {
     text-shadow: 1px 1px 2px black, 0 0 1em black;
 }
 
-/* Fastorder form h1 (modal header) */
-.modal-fastorder h1{
-    text-shadow: 0px 3px 0px #b2a98f,
-                 0px 5px 4px rgba(0,0,0,0.15),
-                 0px 2px 2px rgba(0,0,0,0.1),
-                 0px 3px 2px rgba(0,0,0,0.1);
+/* Fastorder form h1 (modal header) and success form */
+.modal-fastorder h1, .modal-fastorder-success h4{
+text-shadow: 0 1px 0 #ccc, 
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
 }

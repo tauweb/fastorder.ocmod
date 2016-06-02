@@ -135,6 +135,7 @@ class ControllerProductFastorder extends Controller {
     $products   = $json['product_name'];
 
     $mail_tmpl_data = array (
+        'subject'                       => $subject,
         'text_fastorder_name'           => $data['text_fastorder_name'],
         'text_fastorder_mail_msg_data'  => $data['text_fastorder_mail_msg_data'],
         'name'                          => $json['name'],

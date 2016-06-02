@@ -75,3 +75,6 @@ PHP версии 5.4 и выше, OpenCart версии 2.0.0.0 и выше, Boo
     Other styles edit.
     Small fix in mail generator. Now it better optimized for Opencart under 2.2.0 version.
     Now mail message use own templete (catalog/view/theme/default/template/mail/fastorder_mail_msg.tpl), where you can set your own beautifull message template and styles :)
+
+1.2.2: Fix error $subject variable in mail template not found (found in log if errors is off)
+    Small styles edit
