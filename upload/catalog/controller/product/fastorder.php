@@ -133,7 +133,8 @@ class ControllerProductFastorder extends Controller {
     // Mail subject
     $subject    = $data['text_fastorder_mail_subject'] .' ('.$_SERVER['HTTP_HOST'] . ')';
     $products   = $json['product_name'];
-
+    
+    // Data to mail template
     $mail_tmpl_data = array (
         'subject'                       => $subject,
         'text_fastorder_name'           => $data['text_fastorder_name'],
