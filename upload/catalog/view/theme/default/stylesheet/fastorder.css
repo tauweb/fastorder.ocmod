@@ -5,31 +5,34 @@
  */
 
 /* FastOrder modal form styles */
-.modal-fastorder{}
+.modal-fastorder{
+  z-index: 9999;
+  zoom:90%;
+}
 
 /* FastOrder modal success styles */
 .modal-fastorder-success{}
 
 /* FastOrder button styles in the product cart */
 .form-group .btn-fastorder{
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 /* FastOrder button styles in the category product list */
 .button-gruop .btn-fastorder{
-    border-radius: 0px;
-    margin-bottom: 0px;
-    padding: 6px;
+  border-radius: 0px;
+  margin-bottom: 0px;
+  padding: 6px;
 }
 
 /* buttons in the fastorer form and success form */
 .modal-fastorder button, .modal-fastorder-success button {
-    text-shadow: 1px 1px 2px black, 0 0 1em black;
+  text-shadow: 1px 1px 2px black, 0 0 1em black;
 }
 
 /* Fastorder form h1 (modal header) and success form */
 .modal-fastorder h1, .modal-fastorder-success h4{
-text-shadow: 0 1px 0 #ccc, 
+  text-shadow: 0 1px 0 #ccc, 
                0 2px 0 #c9c9c9,
                0 3px 0 #bbb,
                0 4px 0 #b9b9b9,
@@ -41,4 +44,44 @@ text-shadow: 0 1px 0 #ccc,
                0 5px 10px rgba(0,0,0,.25),
                0 10px 10px rgba(0,0,0,.2),
                0 20px 20px rgba(0,0,0,.15);
+}
+.modal-fastorder #tt{
+  margin: 0;
+  height: 0px;
+}
+.modal-fastorder ul{
+  margin-bottom: 0;
+}
+
+
+/* FastOrder button */
+.btn-fastorder{
+
+}
+
+
+
+
+/* FastOrder button Tested. Not Used in production ============================================== */
+.button-fastorder>span{
+  margin: 0 11px 0 5px;
+  font-weight: bold;
+}
+
+.button-fastorder{
+  z-index: 9998;
+  position: fixed;
+  transform: rotate(90deg);
+  font-size: 20px;
+  color:#fff;
+  /*right: -92px; */
+  right: -111px;
+  background-color: #D2504D;
+  padding: 6px;
+  border-radius: 3px;
+  border: 1px solid #B8504E;
+}
+
+.button-fastorder:hover{
+  background-color: #C9302C;
 }
