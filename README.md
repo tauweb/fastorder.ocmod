@@ -78,3 +78,21 @@ PHP версии 5.4 и выше, OpenCart версии 2.0.0.0 и выше, Boo
 
 1.2.2: Fix error $subject variable in mail template not found (found in log if errors is off)
     Small styles edit
+1.3: Partially rewritten modifier core;
+    It works with the latest versions of ocStore!;
+    Fixed the cause clog up logs (product_id);
+    Fixed display of quotes in the title of the goods;
+    Removed the cancel button from the form, which makes it more compact.
+    Removed the inscription form of a cap on the use of the rules;
+    Ability to specify the number of ordered goods;
+    Added information on the number of ordered goods and recalculation of the total price in the postal letter template;
+    Now item in the letter as a link, now you quickly understand exactly what the customer ordered goods;
+    Mail client is now a link (mailto) letter in the mail;
+    Now the letters are sent as an additional e-mail addresses listed in the admin panel (System-> Settings-> Shop-> Pochta-> Advanced warning addresses);
+    Added information about the product (phone and e-mail) under the data for the order in the letter;
+    Price is now changing with the change of currency and translated at the exchange rate;
+    Now take into account the price discount;
+    Required fields are now just a phone;
+    Automatically fill in all form fields with data from the user account, if it has been authorized on the site;
+    Preparing a paid version, which will generate and add to your admin area. Alas, the version will be paid.
+    Work is in progress. :)
