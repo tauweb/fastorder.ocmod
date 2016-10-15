@@ -78,10 +78,15 @@ PHP версии 5.4 и выше, OpenCart версии 2.0.0.0 и выше, Boo
 
 1.2.2: Fix error $subject variable in mail template not found (found in log if errors is off)
     Small styles edit
+    
 1.3: Partially rewritten modifier core;
+
     It works with the latest versions of ocStore!;
+    
     Fixed the cause clog up logs (product_id);
+    
     Fixed display of quotes in the title of the goods;
+    
     Removed the cancel button from the form, which makes it more compact.
     Removed the inscription form of a cap on the use of the rules;
     Ability to specify the number of ordered goods;
