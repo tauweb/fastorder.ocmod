@@ -4,7 +4,7 @@ class ControllerProductFastorder extends Controller {
     private $dev = false;
 
     //Set the Pro version
-    private $pro = true;
+    private $pro = false;
 
     public function index($data) {
         // Debugging
@@ -241,7 +241,7 @@ class ControllerProductFastorder extends Controller {
                 'host'              => $_SERVER['SERVER_NAME'],
                 "key"               => '744febb6b4788596b757892de3f3210c',
                 'extension_name'    => 'fastorder.ocmod',
-                'extension_ver'     => '1.3'
+                'extension_ver'     => '1.3.1'
             );
 
             $result = file_get_contents($url, false, stream_context_create( array(
