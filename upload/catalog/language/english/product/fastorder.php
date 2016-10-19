@@ -32,7 +32,11 @@ $_['text_fastorder_mail_msg_order'] = 'Order the following products';
 $_['text_fastorder_mail_msg_price'] = 'On the total cost of';
 $_['text_fastorder_mail_msg_count'] = 'The amount';
 $_['text_fastorder_mail_msg_total'] = 'For total cost';
-$_['txt_text_fastorder_form_info_message'] = 'All fields marked with an star must be filled!';
+$_['txt_text_fastorder_form_error_message'] = 'All fields marked with an star must be filled!';
+$_['txt_text_fastorder_form_wait_message'] = 'Wait until the order is complete, and then the form closes automatically!';
 $_['txt_none_price'] = 'Price is not specified . Ask our manager';
 
 // Admin order
+$_['text_fastorder_order_totals_0_title'] = 'Amount';
+$_['text_fastorder_order_totals_4_title'] = 'Total';
+$_['text_fastorder_order'] = 'Order in one click';

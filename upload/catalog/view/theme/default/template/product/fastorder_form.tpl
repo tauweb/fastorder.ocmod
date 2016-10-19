@@ -13,8 +13,14 @@
                         <!-- Alert form validation -->
                         <div id="error-msg" class="alert alert-danger" role="alert" style="display: none;">
                             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                            <?php echo $txt_text_fastorder_form_info_message;?>
+                            <?php echo $txt_text_fastorder_form_error_message;?>
                         </div>
+
+                        <div id="wait-msg" class="alert alert-info" role="alert" style="display: none;">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <?php echo $txt_text_fastorder_form_wait_message;?>
+                        </div>
+
                         <div class="form-group input-group-sm">
                             <label for="txt_name"><?php echo $text_fastorder_name;?>*</label>
                             <input type="text" class="form-control" id="name<?php echo $product_id;?>" name="name<?php echo $product_id;?>" placeholder="<?php echo $text_fastorder_input_name_placeholder;?>" required autofocus value="<?php if(isset($username)){echo $username;}?>">
@@ -136,6 +142,9 @@
                 {
                     $('#error-msg').show();
                     return false;
+                }else{
+                    $('#error-msg').hide();
+                    $('#wait-msg').show();
                 }
             },
             complete: function() {
