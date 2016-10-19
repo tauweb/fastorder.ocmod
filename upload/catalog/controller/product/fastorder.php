@@ -310,46 +310,48 @@ class ControllerProductFastorder extends Controller {
         // Create OpenCart mail object
         $mail = new Mail();
 
-        // Гребанные мудаки, разработчики Opencart, никак не могу определиться с названием параметров конфига. Ебланы хуевы, как можно быть такими... ну блин... это же будут читать тысячи пользователей... Я адски зол, где стандарты, мать его....
-        // Пока что тестировано на OC_2.2, и каком-то более низком через mail, без использования SMTP
+        // Гребанные мудаки, разработчики Opencart, никак не могут определиться с названием параметров конфига. Ебланы хуевы, как можно быть такими... ну блин... это же будут читать тысячи пользователей... Я адски зол, где стандарты, мать его....
         // Потребуется доработка под разные версии.
         // Последнее изменение с версии 1.2.1
+        // 
+        // Set the mail parameters
+        $mail->protocol = $this->config->get('config_mail_protocol');
+        $mail->parameter = $this->config->get('config_mail_parameter');
 
-        // SMTP mail in tested mode.
-        // Now working with mail is normal.
-        if (VERSION >= '2.2.0.0') {
-            // Setup the mail parameters
-            $mail->protocol = $this->config->get('config_mail_protocol');
-            $mail->parameter = $this->config->get('config_mail_parameter');
+        if ($this->config->get('config_mail_smtp_hostname')) {
             $mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
-            $mail->smtp_username = $this->config->get('config_mail_smtp_username');
-            $mail->smtp_password = $this->config->get('config_mail_smtp_password');
-            $mail->smtp_port = $this->config->get('config_mail_smtp_port');
-            $mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
-            $mail->setTo($email_to);
-            $mail->setFrom(explode(',', $this->config->get('config_email'))[0]);
-            $mail->setSender($this->config->get('config_name'));
-            $mail->setSubject(html_entity_decode($data['text_fastorder_mail_subject'] .' ('.$_SERVER['HTTP_HOST'] . ')'), ENT_QUOTES, 'UTF-8');
-            $mail->setHtml($mail_message);
-            // $mail->setText(html_entity_decode($mail_message, ENT_QUOTES, 'UTF-8'));
-        }else{
-            // Older
-            // Setup the mail parameters
-            $mail->protocol = $this->config->get('config_mail_protocol');
-            $mail->parameter = $this->config->get('config_mail_parameter');
+        } else {
             $mail->hostname = $this->config->get('config_smtp_host');
-            $mail->username = $this->config->get('config_smtp_username');
-            $mail->password = $this->config->get('config_smtp_password');
-            $mail->port = $this->config->get('config_smtp_port');
-            $mail->timeout = $this->config->get('config_smtp_timeout');
-            $mail->setTo($email_to);
-            $mail->setFrom(explode(',', $this->config->get('config_email'))[0]);
-            $mail->setSender($this->config->get('config_name'));
-            $mail->setSubject(html_entity_decode($data['text_fastorder_mail_subject'] .' ('.$_SERVER['HTTP_HOST'] . ')'), ENT_QUOTES, 'UTF-8');
-            $mail->setHtml($mail_message);
-            // $mail->setText(html_entity_decode($mail_message, ENT_QUOTES, 'UTF-8'));
         }
 
+        if ($this->config->get('config_mail_smtp_username')) {
+            $mail->smtp_username = $this->config->get('config_mail_smtp_username');
+        } else {
+            $mail->username = $this->config->get('config_smtp_username');
+        }
+
+        if ($this->config->get('config_mail_smtp_password')) {
+            $mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+        } else {
+            $mail->password = $this->config->get('config_smtp_password');
+        }
+
+        if ($this->config->get('config_mail_smtp_port')) {
+            $mail->smtp_port = $this->config->get('config_mail_smtp_port');
+        } else {
+            $mail->port = $this->config->get('config_smtp_port');
+        }
+
+        if ($this->config->get('config_mail_smtp_timeout')) {
+            $mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+        } else {
+            $mail->timeout = $this->config->get('config_smtp_timeout');
+        }
+        $mail->setTo($email_to);
+        $mail->setFrom(explode(',', $this->config->get('config_email'))[0]);
+        $mail->setSender($this->config->get('config_name'));
+        $mail->setSubject(html_entity_decode($data['text_fastorder_mail_subject'] .' ('.$_SERVER['HTTP_HOST'] . ')'), ENT_QUOTES, 'UTF-8');
+        $mail->setHtml($mail_message);
         $mail->setReplyTo(explode(',', $this->config->get('config_email'))[0]);
 
         // Send mail to the shop owner
