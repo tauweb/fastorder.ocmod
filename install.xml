@@ -42,7 +42,7 @@ $data['fastorder'] = $this->load->controller('product/fastorder', $product_info)
             </search>
             <add position="before"><![CDATA[
               <!-- Button fastorder -->
-              <div class="button-gruop">
+              <div class="button-group">
                 <?php echo $product['fastorder']; ?>
               </div><!-- END :  button fastorder -->
             ]]>
